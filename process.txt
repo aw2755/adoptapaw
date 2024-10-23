@@ -1,0 +1,80 @@
+==========================
+        ADOPTAPAW
+==========================
+
+*** 'node --env-file=config.env server'
+    * this is used to test the connection to the server, will show the messages:
+        "Pinged your deployment. You successfully connected to MongoDB!
+         Server listening on port 5050"
+
+1. MERN tech stack (refer to 'MERN.png' for reference):
+    - MongoDB for database.
+    - Express.js for backend.
+    - React for frontend.
+    - Node.js for backend.
+
+2. Create a config.env file used to store sensitive data.
+
+3. Creating a server directory that will handle all server request and backend logic.
+    - 'npm init -y' will initialize a project and create a package.json in a node.js project.
+
+    - 'package.json' acts as the blueprint for the project, providing all the information required 
+        to install, manage, and run it effectively.
+        - adding ("type": "module") will allow node to use ES modules(ECMAScript Modules) which is
+            a modern, efficient, and clean way of organizing JavaScript code, making it easier to 
+            maintain and scale, especially in large projects.
+
+    - now we can install the rest of our dependencies.
+        - 'npm install mongodb express cors'  --> creates the node_modules directory and package-lock.json.
+            - mongodb installs the node.js database driver which allows us to connect to database.
+            - express is the web framework for node.js, making our lives easier by:
+                * Simplifying HTTP request handling and routing.
+                * Offering middleware for common tasks like logging, parsing data, and serving static files.
+                * Providing flexibility in routing and project structure.
+                * Allowing seamless integration with templates, databases, and front-end frameworks.
+                * Reducing boilerplate code and improving productivity in web development.
+            - cors(cross-origin resource sharing) is a package used for security features implemented by
+                web browsers to prevent web pages from making requests to a different domain.
+    
+    - server.js file is used to start the Express.js server.
+        1. importing dependencies.
+            - express is used for handling routes.
+            - cors(Cross-Origin Resource Sharing) allows the server to handle request from diff domains.
+            - records is the database.
+        2. setting up the port, defaults to 5050 is not defined.
+        3. creates an instance of the Express application.
+        4. using middleware to parse json data sets.
+        5. defining a route to handle requests.
+        6.. starts server on specified port and listens to incoming requests.
+    
+    - db/connection.js file is used for connecting to the database and pulling from it.
+        1. imports MongoDB client and API version.
+        2. sets up MongoDB URI(Uniform Resource Identifier)
+            * A URI can be thought of as a way to address a resource so that it can be located and interacted
+                with, such as a web page, a file, or a database.
+        3. it creates a MongoDB client instance with the correct version and other checks.
+        4. connects to MongoDB server.
+        5. pings the server to check for successful connection.
+        6. tries to access the pet database, if doesn't exists create one.
+        7. export the pet database so other parts of the application can interact with it.
+
+    - routes/record.js file is used for CRUD(Create, Read, Update, Delete) functionality.
+        1. imports express, db, and ObjectId.
+            * express is used to create web server and define routes.
+            * db is the database object passed back from db/connections.js.
+            * ObjectId is a utility provided by MongoDB to convert string representation of document
+                id into MongoDB ObjectId object which is used by MongoDB to uniquely Identify documents.
+        2. define routes for endpoints to handle https responses.
+        3. write CRUD functionalities:
+            * get ALL records.
+            * get by one record by id.
+            * create a new record by id.
+            * update an existing record by id.
+            * delete an existing record by id.
+        4. the specific res.status:
+            * 404 = not found.
+            * 200 = ok.
+            * 500 = internal server error.
+            * 400 = bad request.
+
+4. Creating a Client directory that will handle frontend design.
