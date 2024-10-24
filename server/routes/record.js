@@ -63,7 +63,7 @@ router.patch("/:id", async (req, res) => {
         };
 
         let collection = await db.collection("records");
-        let result = await collection.updateOne(query, updates);
+        let result = await collection.updateOne(query, update);
         res.send(result).status(200);
     } catch(err) {
         console.log(err);
@@ -76,7 +76,7 @@ router.delete("/:id", async(req, res) => {
     try {
         const query = { _id: new ObjectId(req.params.id) };
 
-        const collection = db.collection.deleteOne(query);
+        const collection = db.collection("records");
         let result = await collection.deleteOne(query);
 
         res.send(result).status(200);

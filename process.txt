@@ -78,3 +78,28 @@
             * 400 = bad request.
 
 4. Creating a Client directory that will handle frontend design.
+    - npm create vite@latest client -- --template react.
+        * creates a new project with vite, a modern build tool with the latest version.
+        * creates this in a directory called client.
+        * the first -- tells vite not to npm install itself.
+        * --template tells vite to use the react template.
+    - npm install -D tailwindcss postcss autoprefixer.
+        - these are development dependencies.
+        - tailwindcss is a CSS framework used to quickly style applications by composing 
+            utility classes directly in your HTML.
+        - postcss is a tool for transforming CSS with JavaScript plugins.
+        - autoprefixer is a PostCSS plugin that automatically adds vendor prefixes to 
+            CSS rules to ensure compatibility across different browsers.
+    - npx tailwindcss init -p.
+        - initialize tailwind config and creates the tailwind.config.js file.
+            * add:
+                "./index.html",
+                "./src/**/*.{js, ts, jsx, tsx}",
+              in content[] to let tailwind know which files to apply the CSS on.
+            * add:
+                @tailwind base;
+                @tailwind components;
+                @tailwind utilities;
+              in src/index.css to utilize predefine class name.
+    - npm install -D react-router-dom.
+        - adds client side page routing to react.
